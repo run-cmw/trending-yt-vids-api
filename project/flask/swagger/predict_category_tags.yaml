@@ -1,0 +1,36 @@
+swagger: "2.0"
+info:
+  title: predict category and tags API
+  version: "0.1"
+  description: predict category and tags
+
+paths:
+  /predict/category_tags:
+    post:
+      summary: Gets tag and category_id
+      operationId: predict_category_tags.predict
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: title
+          required: true
+          description: title of content
+          type: string
+        - in: formData
+          name: description
+          required: true
+          description: description of content
+          type: string
+        - in: formData
+          name: channel_title
+          required: true
+          description: channel title
+          type: string
+      responses:
+        "200":
+          description: Classification performed successfully
+        "500":
+          description: Unable to perform the classification

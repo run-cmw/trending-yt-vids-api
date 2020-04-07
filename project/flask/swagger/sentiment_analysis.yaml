@@ -1,0 +1,26 @@
+swagger: "2.0"
+info:
+  title: Sentiment Analysis API
+  version: "0.1"
+  description: Sentiment Analysis API
+
+paths:
+  /predict/sentiment-analysis:
+    post:
+      summary: Gets Sentiment Analysis of a video
+      operationId: sentiment_analysis.sentiment_analyzer
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: video_id
+          required: true
+          description: video_id you want to analyze
+          type: string
+      responses:
+        "200":
+          description: Classification performed successfully
+        "500":
+          description: Unable to perform the classification
