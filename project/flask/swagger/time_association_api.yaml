@@ -1,0 +1,84 @@
+swagger: '2.0'
+info:
+  title: YouTube Trending Videos API
+  version: "1.0"
+  description: An API the provides descriptive and predictive stats on trending YouTube videos
+  contact: 
+    name: "Jacob Erickson, Yejee (Jenny) Lee, and Clara Mae Wells"
+
+paths:
+  # /describe/category-count/:
+  #   get:
+  #     summary: Number of trending videos in each category (only categories with counts above 0)
+  #     operationId: time_association_api.get_cat_count
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       in: query
+  #       name: country
+  #       required: true
+  #       type: string
+  #       description: The country to show category counts for - United States, Candada, or Great Britain
+  #       enum: 
+  #         - us
+  #         - ca
+  #         - gb
+  #     responses:
+  #       '200': 
+  #         description: Category counts successfully retrieved
+  #       '500': 
+  #         description: Unable to get category counts
+
+  /describe/title-sets/1:
+    get:
+      summary: US trending category titles frequent one-itemsets
+      description: Returns frequent one-itemsets (words that appear a minimum amount of times) in trending US category titles
+      operationId: time_association_api.get_freq_1_itemsets
+      responses:
+        '200': 
+          description: Frequent itemsets successfully retrieved
+        '500': 
+          description: Unable to get frequent itemsets
+
+  /describe/title-sets/2:
+    get:
+      summary: US trending category titles frequent two-itemsets
+      description: Returns frequent two itemsets (two words that appear together a minimum amount of times) in trending US category titles
+      operationId: time_association_api.get_freq_2_itemsets
+      responses:
+        '200': 
+          description: Frequent itemsets successfully retrieved
+        '500': 
+          description: Unable to get frequent itemsets
+
+  /describe/title-sets/3:
+    get:
+      summary: US trending category titles frequent three-itemsets
+      description: Returns frequent three itemsets (three words that appear together a minimum amount of times) in trending US category titles
+      operationId: time_association_api.get_freq_3_itemsets
+      responses:
+        '200': 
+          description: Frequent itemsets successfully retrieved
+        '500': 
+          description: Unable to get frequent itemsets
+
+  /describe/rules:
+    get:
+      summary: US trending category titles association rules
+      description: Returns association rules (words with a relationship) in trending US category titles
+      operationId: time_association_api.get_assoc_rules
+      responses:
+        '200': 
+          description: Association rules successfully retrieved
+        '500': 
+          description: Unable to get association rules
+
+
+
+        # description: 
+        #   'us' - United States
+        #   'ca' - Canada
+        #   'gb' - Great Britain 
+        
