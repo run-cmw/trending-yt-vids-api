@@ -33,7 +33,7 @@ paths:
 
   /describe/engagement/like-dislike:
     get:
-      summary: All videos like/dislike engagment
+      summary: All videos like/dislike engagement
       operationId: time_association_api.get_ld_engagement
       consumes:
         - multipart/form-data
@@ -57,7 +57,7 @@ paths:
 
   /describe/engagement/comment:
     get:
-      summary: All videos comment engagment
+      summary: All videos comment engagement
       operationId: time_association_api.get_comm_engagement
       consumes:
         - multipart/form-data
@@ -81,7 +81,7 @@ paths:
 
   /describe/engagement/category/like-dislike:
     get:
-      summary: Like/dislike engagment
+      summary: Like/dislike engagement by category
       operationId: time_association_api.get_cat_ld_engagement
       consumes:
         - multipart/form-data
@@ -105,7 +105,7 @@ paths:
 
   /describe/engagement/category/comment:
     get:
-      summary: Comment engagment
+      summary: Comment engagement by category
       operationId: time_association_api.get_cat_comm_engagement
       consumes:
         - multipart/form-data
@@ -170,11 +170,4 @@ paths:
           description: Association rules successfully retrieved
         '500': 
           description: Unable to get association rules
-
-
-
-        # description: 
-        #   'us' - United States
-        #   'ca' - Canada
-        #   'gb' - Great Britain 
         
