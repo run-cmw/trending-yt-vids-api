@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: YouTube Trending Videos API
   version: "1.0"
-  description: An API the provides descriptive and predictive stats on trending YouTube videos
+  description: An API that provides descriptive and predictive stats on trending YouTube videos
   contact: 
     name: "Jacob Erickson, Yejee (Jenny) Lee, and Clara Mae Wells"
 
