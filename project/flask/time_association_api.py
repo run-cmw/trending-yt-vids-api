@@ -6,7 +6,7 @@ from sklearn.externals import joblib
 app = connexion.FlaskApp(__name__, port=8080, specification_dir="swagger/")
 application = app.app
 
-# Load pre-trained models
+# Load the followint pre-trained models:
 filepath = './model/'
 
 # Categories and counts models
@@ -42,7 +42,24 @@ freq_three_itemsets = joblib.load(filepath + 'itemset3.joblib')
 # Trending videos' title association rules model
 assoc_rules = joblib.load(filepath + 'assoc_rules.joblib')
 
-# Implement functions
+# Implement health function
+def health():
+  try:
+    get_cat_count('us')
+    get_ld_engagement('ca')
+    get_comm_engagement('gb')
+    get_cat_ld_engagement('us')
+    get_cat_comm_engagement('gb')
+    get_freq_1_itemsets()
+    get_freq_2_itemsets()
+    get_freq_3_itemsets()
+    get_assoc_rules()
+  except:
+    return {"Message": "Service is unhealthy"}, 500
+  
+  return {"Message": "Service is OK"}
+
+# Implement describe functions
 def get_cat_count(country):
   if country == 'us':
     return us_cat_count
