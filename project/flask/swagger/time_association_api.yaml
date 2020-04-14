@@ -11,6 +11,8 @@ paths:
     get:
       summary: Check health of the service
       operationId: time_association_api.health
+      tags:
+        - Health
       description: Returns the health status of the service
       responses:
           '200':
@@ -22,6 +24,9 @@ paths:
     get:
       summary: Number of trending videos in each category
       operationId: time_association_api.get_cat_count
+      tags:
+        - Describe
+        - Category
       consumes:
         - multipart/form-data
       produces:
@@ -46,6 +51,9 @@ paths:
     get:
       summary: All videos like/dislike engagement
       operationId: time_association_api.get_ld_engagement
+      tags:
+        - Describe
+        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -70,6 +78,9 @@ paths:
     get:
       summary: All videos comment engagement
       operationId: time_association_api.get_comm_engagement
+      tags:
+        - Describe
+        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -94,6 +105,9 @@ paths:
     get:
       summary: Like/dislike engagement by category
       operationId: time_association_api.get_cat_ld_engagement
+      tags:
+        - Describe
+        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -118,6 +132,9 @@ paths:
     get:
       summary: Comment engagement by category
       operationId: time_association_api.get_cat_comm_engagement
+      tags:
+        - Describe
+        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -143,6 +160,9 @@ paths:
       summary: US trending category titles frequent one-itemsets
       description: Returns frequent one-itemsets (words that appear a minimum amount of times) in trending US category titles
       operationId: time_association_api.get_freq_1_itemsets
+      tags:
+        - Describe
+        - Itemsets
       responses:
         '200': 
           description: Frequent itemsets successfully retrieved
@@ -154,6 +174,9 @@ paths:
       summary: US trending category titles frequent two-itemsets
       description: Returns frequent two itemsets (two words that appear together a minimum amount of times) in trending US category titles
       operationId: time_association_api.get_freq_2_itemsets
+      tags:
+        - Describe
+        - Itemsets
       responses:
         '200': 
           description: Frequent itemsets successfully retrieved
@@ -165,6 +188,9 @@ paths:
       summary: US trending category titles frequent three-itemsets
       description: Returns frequent three itemsets (three words that appear together a minimum amount of times) in trending US category titles
       operationId: time_association_api.get_freq_3_itemsets
+      tags:
+        - Describe
+        - Itemsets
       responses:
         '200': 
           description: Frequent itemsets successfully retrieved
@@ -176,6 +202,9 @@ paths:
       summary: US trending category titles association rules
       description: Returns association rules (words with a relationship) in trending US category titles
       operationId: time_association_api.get_assoc_rules
+      tags:
+        - Describe
+        - Association Rules
       responses:
         '200': 
           description: Association rules successfully retrieved
