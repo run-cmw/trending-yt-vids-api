@@ -60,18 +60,6 @@ sentiment = joblib.load('./model/sentiment_analysis.joblib')
 us_data = joblib.load('./model/us_data.joblib')
 sentiment_results_dict = joblib.load('./model/sentiment_results_dict.joblib')
 
-joblib_dict = {}
-basepath = Path('./model/category/')
-files_in_basepath = basepath.iterdir()
-regex = re.compile(r'\d+')
-for item in files_in_basepath:
-    if item.is_file():
-        category_id = [int(x) for x in regex.findall(item.name)]
-        if category_id[0] not in joblib_dict.keys():
-            joblib_dict[category_id[0]] = []
-        joblib_dict[category_id[0]].append('./model/category/' + item.name)
-
-
 # Implement health function
 def health():
   try:
@@ -154,11 +142,10 @@ def predict_category_tags(title, description, channel_title):
 
 
 def generate_tag(category_id, text):
-    if int(category_id) not in joblib_dict.keys():
-        return "This category_id does not exist."
-    files = joblib_dict[int(category_id)]
-    cv = joblib.load(files[1])
-    mir = joblib.load(files[0])
+    cv_name = './model/category/count_vect'+str(int(category_id)) + '.joblib'
+    mir_name = './model/category/mutual_info_reg'+str(int(category_id)) + '.joblib'
+    cv = joblib.load(cv_name)
+    mir = joblib.load(mir_name)
     res = dict(zip(cv.get_feature_names(), mir))
     possible_words = cv.get_feature_names()
     vectorizer2 = CountVectorizer(stop_words='english')
@@ -229,11 +216,10 @@ def get_channel_info(channel_name):
 
 
 def get_top_10_tags_in_category(category_id):
-    if int(category_id) not in joblib_dict.keys():
-        return "This category_id does not exist."
-    files = joblib_dict[int(category_id)]
-    cv = joblib.load(files[1])
-    mir = joblib.load(files[0])
+    cv_name = './model/category/count_vect'+str(int(category_id)) + '.joblib'
+    mir_name = './model/category/mutual_info_reg'+str(int(category_id)) + '.joblib'
+    cv = joblib.load(cv_name)
+    mir = joblib.load(mir_name)
     res = dict(zip(cv.get_feature_names(), mir))
     res = sorted(res.items(), key=lambda x: x[1], reverse=True)[0: 10]
     tags = []
