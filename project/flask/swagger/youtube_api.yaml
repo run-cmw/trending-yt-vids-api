@@ -26,7 +26,6 @@ paths:
       operationId: youtube_api.get_cat_count
       tags:
         - Describe
-        - Category
       consumes:
         - multipart/form-data
       produces:
@@ -204,7 +203,6 @@ paths:
       operationId: youtube_api.get_assoc_rules
       tags:
         - Describe
-        - Association Rules
       responses:
         "200":
           description: Association rules successfully retrieved
@@ -214,11 +212,10 @@ paths:
   /describe/channel:
     get:
       summary: Gets summary statistics of channel contents
-      description: Returns the statistics of channel contents
+      description: Returns the statistics of channel contents in US
       operationId: youtube_api.get_channel_info
       tags:
         - Describe
-        - Channel
       consumes:
         - multipart/form-data
       produces:
@@ -227,7 +224,7 @@ paths:
         - in: query
           name: channel_name
           required: true
-          description: name of the channel to search
+          description: name of the channel to search in US data
           type: string
       responses:
         "200":
@@ -242,7 +239,6 @@ paths:
       operationId: youtube_api.get_top_10_tags_in_category
       tags:
         - Describe
-        - tags-category
       consumes:
         - multipart/form-data
       produces:
@@ -266,7 +262,6 @@ paths:
       operationId: youtube_api.sentiment_analyzer
       tags:
         - Predict
-        - sentiment-analysis
       consumes:
         - multipart/form-data
       produces:
@@ -289,7 +284,6 @@ paths:
       operationId: youtube_api.sentiment_analyzer_feature
       tags:
         - Describe
-        - sentiment-analysis-feature
       consumes:
         - multipart/form-data
       produces:
@@ -319,7 +313,6 @@ paths:
       operationId: youtube_api.prediction_engagement
       tags:
         - Predict
-        - views-likes-comments
       consumes:
         - multipart/form-data
       produces:
@@ -364,7 +357,6 @@ paths:
       operationId: youtube_api.predict_category_tags
       tags:
         - Predict
-        - category-tags
       consumes:
         - multipart/form-data
       produces:

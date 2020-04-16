@@ -205,9 +205,12 @@ def sentiment_analyzer_feature(country, text_feature):
 # get channel information based on channel_name
 # gives basic statistics of the input channel_name
 def get_channel_info(channel_name):
-    channel = us_data.groupby("channel_title").get_group(channel_name)
-    if len(channel) == 0:
+    found = us_data[us_data['channel_title'].str.contains(channel_name)]
+    if len(found) == 0:
         return "this channel_name does not exist."
+    channel = us_data.groupby("channel_title").get_group(channel_name)
+    # if len(channel) == 0:
+    #     return "this channel_name does not exist."
     most_pop_video = channel.sort_values(
         by='views', ascending=False).iloc[0]['title']
     max_views = channel.sort_values(
