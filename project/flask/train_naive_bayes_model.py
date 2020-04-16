@@ -13,13 +13,13 @@ from sklearn.model_selection import train_test_split
 
 
 print('Loading the US dataset')
-us_data = pd.read_csv('~/Desktop/data-miners/project/data/USvideos.csv')
+us_data = joblib.load('./model/dataset/us_data.joblib')
 us_data['text'] = us_data[['title', 'channel_title',
                            'tags', 'description']].astype(str).agg(''.join, axis=1)
 Y = us_data['category_id']
 
 print('Training a Naive Bayes classifier')
-count_vect = CountVectorizer()
+count_vect = CountVectorizer(stop_words='english')
 X = count_vect.fit_transform(us_data['text'])
 X_train, X_dummy_test, y_train, y_dummy_test = train_test_split(
     X, Y, test_size=0.30)
