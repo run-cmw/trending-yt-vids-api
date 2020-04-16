@@ -51,12 +51,15 @@ freq_three_itemsets = joblib.load(filepath + 'itemset3.joblib')
 # Trending videos' title association rules model
 assoc_rules = joblib.load(filepath + 'assoc_rules.joblib')
 
+# naive bayes model for predicting category
 text_clf = joblib.load('./model/naive_bayes_classifier.joblib')
 nb_count_vect = joblib.load('./model/naive_bayes_clf_count_vect.joblib')
+
+# linear regression model for predicting views, likes, comments
 linear_reg_dict = joblib.load('./model/linear_reg.joblib')
-# bagging_reg_dict = joblib.load('./model/bagging_reg.joblib')
+
 sentiment = joblib.load('./model/sentiment_analysis.joblib')
-# whole_data = joblib.load('./model/dataset/whole_data.joblib')
+
 us_data = joblib.load('./model/us_data.joblib')
 sentiment_results_dict = joblib.load('./model/sentiment_results_dict.joblib')
 
