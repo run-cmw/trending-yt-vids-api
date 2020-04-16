@@ -19,7 +19,7 @@ us_data['text'] = us_data[['title', 'channel_title',
 Y = us_data['category_id']
 
 print('Training a Naive Bayes classifier')
-count_vect = CountVectorizer()
+count_vect = CountVectorizer(stop_words='english')
 X = count_vect.fit_transform(us_data['text'])
 X_train, X_dummy_test, y_train, y_dummy_test = train_test_split(
     X, Y, test_size=0.30)
