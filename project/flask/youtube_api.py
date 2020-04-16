@@ -209,8 +209,6 @@ def get_channel_info(channel_name):
     if len(found) == 0:
         return "this channel_name does not exist."
     channel = us_data.groupby("channel_title").get_group(channel_name)
-    # if len(channel) == 0:
-    #     return "this channel_name does not exist."
     most_pop_video = channel.sort_values(
         by='views', ascending=False).iloc[0]['title']
     max_views = channel.sort_values(
