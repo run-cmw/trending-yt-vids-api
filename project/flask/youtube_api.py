@@ -58,8 +58,8 @@ nb_count_vect = joblib.load('./model/naive_bayes_clf_count_vect.joblib')
 # linear regression model for predicting views, likes, comments
 linear_reg_dict = joblib.load('./model/linear_reg.joblib')
 
+# sentiment analysis model
 sentiment = joblib.load('./model/sentiment_analysis.joblib')
-
 us_data = joblib.load('./model/us_data.joblib')
 sentiment_results_dict = joblib.load('./model/sentiment_results_dict.joblib')
 
@@ -133,6 +133,10 @@ def get_freq_3_itemsets():
 def get_assoc_rules():
   return assoc_rules
 
+# predicting category_id and tags based on title, description
+# and channel_title.
+# generate_tag() is a sub function of predict_category_tags()
+# returns json_format: category_id and possible tags
 def predict_category_tags(title, description, channel_title):
     text = title + description + channel_title
     text = pd.Series(text)
@@ -143,7 +147,9 @@ def predict_category_tags(title, description, channel_title):
     return {"category_id": int(predicted),
             "possible tags": list(tags)}
 
-
+# this function generates tags based on category_id and a text
+# text is combined title, description, channel_title
+# returns 5 tags according to the information given
 def generate_tag(category_id, text):
     cv_name = './model/category/count_vect'+str(int(category_id)) + '.joblib'
     mir_name = './model/category/mutual_info_reg'+str(int(category_id)) + '.joblib'
@@ -162,13 +168,17 @@ def generate_tag(category_id, text):
     tags = [tag[0] for tag in words]
     return tags
 
-
+# This functin predicts number of views, likes, or comments
+# based on country, title, channel_title, tags and 
+# feature(likes, views, comments) selected by user.
+# returns number of views, likes, or comments
 def prediction_engagement(country, title, channel_title, tags, feature):
     text = title + channel_title + tags
     user_text = linear_reg_dict[country]['cv'].transform([text])
     return abs(linear_reg_dict[country][feature].predict(user_text)[0])
 
-
+# sentiment analyzer based on video_id
+# returns sentiment analysis result based on video_id
 def sentiment_analyzer(video_id):
     sentiment_results = []
     data = us_data.loc[us_data['video_id'] == video_id]
@@ -185,14 +195,15 @@ def sentiment_analyzer(video_id):
         sentiment_dict['result'] = 'Neutral'
     return sentiment_dict
 
-
+# sentiment analyzer based on country and features(views, likes, comments)
 def sentiment_analyzer_feature(country, text_feature):
     percentage = sentiment_results_dict[country][text_feature]
     return {"The percentage of positive sentiment text features is: ": str(round(percentage[0], 2)) + "%",
             "The percentage of negative sentiment text features is: ": str(round(percentage[1], 2)) + "%",
             "The percentage of neutral sentiment text features is: ": str(round(percentage[2], 2)) + "%"}
 
-
+# get channel information based on channel_name
+# gives basic statistics of the input channel_name
 def get_channel_info(channel_name):
     channel = us_data.groupby("channel_title").get_group(channel_name)
     if len(channel) == 0:
@@ -217,7 +228,7 @@ def get_channel_info(channel_name):
             "total_comments": int(sum(channel['comment_count'])),
             "avg_comments": channel['comment_count'].mean()}
 
-
+# get top 10 tags based on category_id.
 def get_top_10_tags_in_category(category_id):
     cv_name = './model/category/count_vect'+str(int(category_id)) + '.joblib'
     mir_name = './model/category/mutual_info_reg'+str(int(category_id)) + '.joblib'
