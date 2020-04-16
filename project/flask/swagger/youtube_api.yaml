@@ -1,0 +1,384 @@
+swagger: "2.0"
+info:
+  title: Trending YouTube Videos API
+  version: "1.0"
+  description: An API that provides descriptive and predictive stats on trending YouTube videos
+  contact:
+    name: "Jacob Erickson, Yejee (Jenny) Lee, and Clara Mae Wells"
+
+paths:
+  /health:
+    get:
+      summary: Check health of the service
+      operationId: youtube_api.health
+      tags:
+        - Health
+      description: Returns the health status of the service
+      responses:
+        "200":
+          description: Service is healthy
+        "500":
+          description: Service is unhealthy
+
+  /describe/category/count:
+    get:
+      summary: Number of trending videos in each category
+      operationId: youtube_api.get_cat_count
+      tags:
+        - Describe
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: The country to show category counts for - United States, Candada, or Great Britain (only diplays categories with counts above 0)
+          enum:
+            - us
+            - ca
+            - gb
+      responses:
+        "200":
+          description: Category counts successfully retrieved
+        "500":
+          description: Unable to get category counts
+
+  /describe/engagement/like-dislike:
+    get:
+      summary: All videos like/dislike engagement
+      operationId: youtube_api.get_ld_engagement
+      tags:
+        - Describe
+        - Engagement
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: Overall all like/dislike engagement (% based on views) for all videos in specified country
+          enum:
+            - us
+            - ca
+            - gb
+      responses:
+        "200":
+          description: Like/dislike engagement successfully retrieved
+        "500":
+          description: Unable to get like/dislike engagement
+
+  /describe/engagement/comment:
+    get:
+      summary: All videos comment engagement
+      operationId: youtube_api.get_comm_engagement
+      tags:
+        - Describe
+        - Engagement
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: The country to show category like/dislike engagement for - United States, Candada, or Great Britain (engagemment is like/dislike % based on views)
+          enum:
+            - us
+            - ca
+            - gb
+      responses:
+        "200":
+          description: Like/dislike engagement successfully retrieved
+        "500":
+          description: Unable to get like/dislike engagement
+
+  /describe/engagement/category/like-dislike:
+    get:
+      summary: Like/dislike engagement by category
+      operationId: youtube_api.get_cat_ld_engagement
+      tags:
+        - Describe
+        - Engagement
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: The country to show category like/dislike engagement for - United States, Candada, or Great Britain (engagemment is like/dislike % based on views)
+          enum:
+            - us
+            - ca
+            - gb
+      responses:
+        "200":
+          description: Country category like/dislike engagement successfully retrieved
+        "500":
+          description: Unable to get country category like/dislike engagement
+
+  /describe/engagement/category/comment:
+    get:
+      summary: Comment engagement by category
+      operationId: youtube_api.get_cat_comm_engagement
+      tags:
+        - Describe
+        - Engagement
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: The country to show category comment engagment for United States, Candada, or Great Britain (engagement is comment % based on views)
+          enum:
+            - us
+            - ca
+            - gb
+      responses:
+        "200":
+          description: Country category comment engagement successfully retrieved
+        "500":
+          description: Unable to get country category comment engagement
+
+  /describe/sets/title/1:
+    get:
+      summary: US trending category titles frequent one-itemsets
+      description: Returns frequent one-itemsets (words that appear a minimum amount of times) in trending US category titles
+      operationId: youtube_api.get_freq_1_itemsets
+      tags:
+        - Describe
+        - Itemsets
+      responses:
+        "200":
+          description: Frequent itemsets successfully retrieved
+        "500":
+          description: Unable to get frequent itemsets
+
+  /describe/sets/title/2:
+    get:
+      summary: US trending category titles frequent two-itemsets
+      description: Returns frequent two itemsets (two words that appear together a minimum amount of times) in trending US category titles
+      operationId: youtube_api.get_freq_2_itemsets
+      tags:
+        - Describe
+        - Itemsets
+      responses:
+        "200":
+          description: Frequent itemsets successfully retrieved
+        "500":
+          description: Unable to get frequent itemsets
+
+  /describe/sets/title/3:
+    get:
+      summary: US trending category titles frequent three-itemsets
+      description: Returns frequent three itemsets (three words that appear together a minimum amount of times) in trending US category titles
+      operationId: youtube_api.get_freq_3_itemsets
+      tags:
+        - Describe
+        - Itemsets
+      responses:
+        "200":
+          description: Frequent itemsets successfully retrieved
+        "500":
+          description: Unable to get frequent itemsets
+
+  /describe/rules/title:
+    get:
+      summary: US trending category titles association rules
+      description: Returns association rules (words with a relationship) in trending US category titles
+      operationId: youtube_api.get_assoc_rules
+      tags:
+        - Describe
+      responses:
+        "200":
+          description: Association rules successfully retrieved
+        "500":
+          description: Unable to get association rules
+
+  /describe/channel:
+    get:
+      summary: Gets summary statistics of channel contents
+      description: Returns the statistics of channel contents in US
+      operationId: youtube_api.get_channel_info
+      tags:
+        - Describe
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: channel_name
+          required: true
+          description: name of the channel to search in US data
+          type: string
+      responses:
+        "200":
+          description: Successfully returns stat of the channel
+        "500":
+          description: unable to return stat of the channel
+
+  /describe/tags-category:
+    get:
+      summary: Gets top 10 tags for specific category_id
+      description: Returns top 10 tags in input category id
+      operationId: youtube_api.get_top_10_tags_in_category
+      tags:
+        - Describe
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: category_id
+          required: true
+          description: category_id to search
+          type: number
+          enum: [1, 2, 10, 15, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 43]
+      responses:
+        "200":
+          description: Successfully returns top 10 tags
+        "500":
+          description: unable to return top 10 tags
+
+  /predict/sentiment-analysis:
+    post:
+      summary: Gets Sentiment Analysis of a video in three countries US, CA, Great Britain
+      operationId: youtube_api.sentiment_analyzer
+      tags:
+        - Predict
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: video_id
+          required: true
+          description: video_id you want to analyze in three countries US, CA, Great Britain
+          type: string
+      responses:
+        "200":
+          description: Classification performed successfully
+        "500":
+          description: Unable to perform the classification
+
+  /describe/sentiment-analysis-feature:
+    get:
+      summary: Gets Sentiment Analysis of a text feature
+      operationId: youtube_api.sentiment_analyzer_feature
+      tags:
+        - Describe
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: text_feature
+          required: true
+          type: string
+          description: text_feature you want to analyze in three countries US, CA, Great Britain
+          enum: ["tags", "description", "title"]
+        - in: query
+          name: country
+          required: true
+          type: string
+          description: countries you want to observe US, CA, Great Britain, all
+          enum: ["us", "ca", "gb", "all"]
+      responses:
+        "200":
+          description: Classification performed successfully
+        "500":
+          description: Unable to perform the classification
+
+  /predict/views-likes-comments:
+    post:
+      summary: predict views, likes, comments counts based on three countries US, CA, Great Britain
+      operationId: youtube_api.prediction_engagement
+      tags:
+        - Predict
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: country
+          required: true
+          type: string
+          description: country you want to predict
+          enum: ["us", "ca", "gb", "all"]
+        - in: formData
+          name: title
+          required: true
+          description: title of content
+          type: string
+        - in: formData
+          name: channel_title
+          required: true
+          description: channel_title of a content
+          type: string
+        - in: formData
+          name: tags
+          required: true
+          description: tags seperated by comma
+          type: string
+        - in: formData
+          name: feature
+          required: true
+          type: string
+          description: feature you want to predict
+          enum: ["views", "likes", "comment_count"]
+      responses:
+        "200":
+          description: Predicting feature successfully
+        "500":
+          description: Unable to predict
+
+  /predict/category-tags:
+    post:
+      summary: Gets tag and category_id
+      operationId: youtube_api.predict_category_tags
+      tags:
+        - Predict
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: title
+          required: true
+          description: title of content
+          type: string
+        - in: formData
+          name: description
+          required: true
+          description: description of content
+          type: string
+        - in: formData
+          name: channel_title
+          required: true
+          description: channel title
+          type: string
+      responses:
+        "200":
+          description: Classification performed successfully
+        "500":
+          description: Unable to perform the classification
