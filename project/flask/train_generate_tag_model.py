@@ -10,7 +10,7 @@ import sklearn.feature_selection as skfs
 
 print('Loading the dataset')
 
-us_data = pd.read_csv('~/Desktop/data-miners/project/data/USvideos.csv')
+us_data = pd.read_csv('../data/USvideos.csv')
 
 print('Training a mutual_info_regression classifier')
 for i in us_data['category_id'].unique():
@@ -25,6 +25,5 @@ for i in us_data['category_id'].unique():
     name_cv = "model/category/count_vect" + str(i) + ".joblib"
     joblib.dump(vectorizer, name_cv)
     joblib.dump(mir, name_mir)
-
 
 print("done training")

@@ -52,7 +52,6 @@ paths:
       operationId: youtube_api.get_ld_engagement
       tags:
         - Describe
-        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -79,7 +78,6 @@ paths:
       operationId: youtube_api.get_comm_engagement
       tags:
         - Describe
-        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -106,7 +104,6 @@ paths:
       operationId: youtube_api.get_cat_ld_engagement
       tags:
         - Describe
-        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -133,7 +130,6 @@ paths:
       operationId: youtube_api.get_cat_comm_engagement
       tags:
         - Describe
-        - Engagement
       consumes:
         - multipart/form-data
       produces:
@@ -161,7 +157,6 @@ paths:
       operationId: youtube_api.get_freq_1_itemsets
       tags:
         - Describe
-        - Itemsets
       responses:
         "200":
           description: Frequent itemsets successfully retrieved
@@ -175,7 +170,6 @@ paths:
       operationId: youtube_api.get_freq_2_itemsets
       tags:
         - Describe
-        - Itemsets
       responses:
         "200":
           description: Frequent itemsets successfully retrieved
@@ -189,7 +183,6 @@ paths:
       operationId: youtube_api.get_freq_3_itemsets
       tags:
         - Describe
-        - Itemsets
       responses:
         "200":
           description: Frequent itemsets successfully retrieved
@@ -226,6 +219,7 @@ paths:
           required: true
           description: name of the channel to search in US data
           type: string
+          x-example: TED-Ed
       responses:
         "200":
           description: Successfully returns stat of the channel
@@ -272,6 +266,7 @@ paths:
           required: true
           description: video_id you want to analyze in three countries US, CA, Great Britain
           type: string
+          x-example: 2kyS6SvSYSE
       responses:
         "200":
           description: Classification performed successfully

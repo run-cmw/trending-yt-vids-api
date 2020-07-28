@@ -10,9 +10,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 print("loading dataset")
-us_data = pd.read_csv('~/Desktop/data-miners/project/data/USvideos.csv')
-ca_data = pd.read_csv('~/Desktop/data-miners/project/data/CAvideos.csv')
-gb_data = pd.read_csv('~/Desktop/data-miners/project/data/GBvideos.csv')
+us_data = pd.read_csv('../data/USvideos.csv')
+ca_data = pd.read_csv('../data/CAvideos.csv')
+gb_data = pd.read_csv('../data/GBvideos.csv')
 frames = [us_data, ca_data, gb_data]
 whole_data = pd.concat(frames)
 whole_data.drop_duplicates(keep=False, inplace=True)
