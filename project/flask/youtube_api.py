@@ -3,14 +3,15 @@ To run this app, in your terminal:
 python youtube_api.py
 """
 import connexion
-from sklearn.externals import joblib
-import pandas as pd
+import json
+from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 import numpy as np
+import pandas as pd
+from pathlib import Path
 import re
+from sklearn.externals import joblib
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import sklearn.feature_selection as skfs
-from pathlib import Path
-from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 
 app = connexion.FlaskApp(__name__, port=8080, specification_dir='swagger/')
 application = app.app
@@ -83,55 +84,55 @@ def health():
 # Implement describe functions
 def get_cat_count(country):
   if country == 'us':
-    return us_cat_count
+    return json.loads(us_cat_count)
   elif country == 'ca':
-    return ca_cat_count
+    return json.loads(ca_cat_count)
   else:
-    return gb_cat_count
+    return json.loads(gb_cat_count)
 
 def get_ld_engagement(country):
   if country == 'us':
-    return us_ld_engagement
+    return json.loads(us_ld_engagement)
   elif country == 'ca':
-    return ca_ld_engagement
+    return json.loads(ca_ld_engagement)
   else:
-    return gb_ld_engagement
+    return json.loads(gb_ld_engagement)
 
 def get_comm_engagement(country):
   if country == 'us':
-    return us_comm_engagement
+    return json.loads(us_comm_engagement)
   elif country == 'ca':
-    return ca_comm_engagement
+    return json.loads(ca_comm_engagement)
   else:
-    return gb_comm_engagement
+    return json.loads(gb_comm_engagement)
 
 def get_cat_ld_engagement(country):
   if country == 'us':
-    return us_cat_ld_engagement
+    return json.loads(us_cat_ld_engagement)
   elif country == 'ca':
-    return ca_cat_ld_engagement
+    return json.loads(ca_cat_ld_engagement)
   else:
-    return gb_cat_ld_engagement
+    return json.loads(gb_cat_ld_engagement)
 
 def get_cat_comm_engagement(country):
   if country == 'us':
-    return us_cat_comm_engagement
+    return json.loads(us_cat_comm_engagement)
   elif country == 'ca':
-    return ca_cat_comm_engagement
+    return json.loads(ca_cat_comm_engagement)
   else:
-    return gb_cat_comm_engagement
+    return json.loads(gb_cat_comm_engagement)
 
 def get_freq_1_itemsets():
-  return freq_one_itemsets
+  return json.loads(freq_one_itemsets)
 
 def get_freq_2_itemsets():
-  return freq_two_itemsets
+  return json.loads(freq_two_itemsets)
 
 def get_freq_3_itemsets():
-  return freq_three_itemsets
+  return json.loads(freq_three_itemsets)
 
 def get_assoc_rules():
-  return assoc_rules
+  return json.loads(assoc_rules)
 
 # predicting category_id and tags based on title, description
 # and channel_title.

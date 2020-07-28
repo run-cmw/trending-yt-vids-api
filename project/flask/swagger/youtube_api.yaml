@@ -219,6 +219,7 @@ paths:
           required: true
           description: name of the channel to search in US data
           type: string
+          x-example: TED-Ed
       responses:
         "200":
           description: Successfully returns stat of the channel
@@ -265,6 +266,7 @@ paths:
           required: true
           description: video_id you want to analyze in three countries US, CA, Great Britain
           type: string
+          x-example: 2kyS6SvSYSE
       responses:
         "200":
           description: Classification performed successfully
