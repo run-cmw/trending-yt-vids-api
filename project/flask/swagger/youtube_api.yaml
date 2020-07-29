@@ -4,7 +4,7 @@ info:
   version: "1.0"
   description: An API that provides descriptive and predictive stats on trending YouTube videos
   contact:
-    name: "Jacob Erickson, Yejee (Jenny) Lee, and Clara Mae Wells"
+    name: "Clara Mae Wells, Jacob Erickson, Yejee (Jenny) Lee"
 
 paths:
   /health:
