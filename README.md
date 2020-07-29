@@ -5,7 +5,7 @@
 - YeJee Lee | Github: [@yejeelee94](https://github.ccs.neu.edu/yejeelee94)
 - Clara Mae Wells | Github: [@claramaewells](https://github.ccs.neu.edu/claramaewells)
 
-This repository contains code for the Trending YouTube Videos API, an API that provides descriptive and predictive stats on trending YouTube videos.
+This repository contains code for the [Trending YouTube Videos API](http://trending-yt.herokuapp.com/ui/), an API that provides descriptive and predictive stats on trending YouTube videos.
 
 #### Service Benefits
 - Enhance understanding of YouTube users
