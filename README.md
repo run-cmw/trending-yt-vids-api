@@ -3,7 +3,7 @@
 #### Team
 - Jacob Erickson | Github: [@ericksonjac](https://github.ccs.neu.edu/ericksonjac)
 - YeJee Lee | Github: [@yejeelee94](https://github.ccs.neu.edu/yejeelee94)
-- Clara Mae Wells | Github: [@claramaewells](https://github.ccs.neu.edu/claramaewells)
+- Clara Mae Wells | Github: [@claramaewells](https://github.com/run-cmw)
 
 This repository contains code for the [Trending YouTube Videos API](http://54.183.182.72:8080/ui/), an API that provides descriptive and predictive stats on trending YouTube videos.
 
